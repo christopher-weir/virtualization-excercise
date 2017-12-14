@@ -1,0 +1,7 @@
+.kill-button-style {
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
