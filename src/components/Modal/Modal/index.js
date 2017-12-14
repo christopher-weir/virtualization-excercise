@@ -1,6 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
-// import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 const Modal = ( { children } ) => (
     <div className="fixed top-0 left-0 right-0 bottom-0 z-999  bg-black-50">
@@ -13,8 +12,12 @@ const Modal = ( { children } ) => (
     </div>
 );
 
-Modal.defaultProps = {};
+Modal.defaultProps = {
+    children: null,
+};
 
-Modal.propTypes = {};
+Modal.propTypes = {
+    children: PropTypes.oneOfType( [PropTypes.element, PropTypes.array] ),
+};
 
 export default Modal;

@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 const Virtualization = ( { children, running } ) => (
     <div
-        className={classNames( 'br2 ba dark-gray b--black-10 mv4 w-100 w-30-l mw5 center ', {
+        className={classNames( 'br2 ba dark-gray b--black-10 mv4 w-100 w-30-l mw5 center bg-animate', {
             'bg-washed-green': running,
             'bg-washed-red'  : !running,
         } )}
@@ -13,10 +13,13 @@ const Virtualization = ( { children, running } ) => (
     </div>
 );
 
-Virtualization.defaultProps = {};
+Virtualization.defaultProps = {
+    children: null,
+};
 
 Virtualization.propTypes = {
-    running: PropTypes.bool.isRequired,
+    running : PropTypes.bool.isRequired,
+    children: PropTypes.oneOfType( [PropTypes.element, PropTypes.array] ),
 };
 
 export default Virtualization;

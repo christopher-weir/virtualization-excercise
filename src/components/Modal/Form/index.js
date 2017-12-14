@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import InputRow from './InputRow';
+import FormInputRow from '../FormInputRow';
 import { updateVirtualization } from '../../../api';
 
 class Form extends Component {
@@ -45,19 +46,34 @@ class Form extends Component {
 
         return (
             <form onSubmit={handleSubmit}>
-                <InputRow label="Name" name="name" value={name} handleInputChange={handleInputChange} />
+                <FormInputRow label="Name" name="name">
+                    <input
+                        className="pa2 input-reset ba bg-transparent measure dib"
+                        type="text"
+                        name="name"
+                        id="name"
+                        value={name}
+                        onChange={handleInputChange}
+                    />
+                </FormInputRow>
 
-                <InputRow label="Port" name="port" value={port} type="number" handleInputChange={handleInputChange} />
+                <FormInputRow label="Port" name="port">
+                    <input
+                        className="pa2 input-reset ba bg-transparent measure dib"
+                        type="number"
+                        name="port"
+                        id="port"
+                        value={port}
+                        onChange={handleInputChange}
+                    />
+                </FormInputRow>
 
-                <div className="pa3">
-                    <label className="db fw4 f6  w-100" htmlFor="protocol">
-                        Protocol
-                    </label>
+                <FormInputRow label="Protocol" name="protocol">
                     <select id="protocol" name="protocol" value={protocol} onChange={handleInputChange}>
                         <option value="HTTP">HTTP</option>
                         <option value="HTTPS">HTTPS</option>
                     </select>
-                </div>
+                </FormInputRow>
 
                 <footer className=" bt b--black-10 pa3 tr w-100 center">
                     <button
@@ -81,6 +97,14 @@ class Form extends Component {
 
 Form.defaultProps = {};
 
-Form.propTypes = {};
+Form.propTypes = {
+    virtualization: PropTypes.shape( {
+        port    : PropTypes.number.isRequired,
+        name    : PropTypes.string.isRequired,
+        protocol: PropTypes.string.isRequired,
+    } ).isRequired,
+    setVirtualizationById: PropTypes.func.isRequired,
+    closeModal           : PropTypes.func.isRequired,
+};
 
 export default Form;
